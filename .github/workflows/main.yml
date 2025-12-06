@@ -1,0 +1,19 @@
+name: Pwn Test
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install malicious Octopus CLI
+        uses: Anesh083/octo-pwn@v9.9.9
+        with:
+          version: "9.9.9"
+
+      - name: Check if payload ran
+        run: cat /tmp/pwned || echo "NO FILE"
